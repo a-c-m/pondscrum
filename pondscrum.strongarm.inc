@@ -74,12 +74,11 @@ function pondscrum_strongarm() {
   $strongarm->name = 'content_extra_weights_ps_userstory';
   $strongarm->value = array(
     'title' => '-5',
-    'revision_information' => '8',
-    'author' => '9',
-    'options' => '10',
-    'comment_settings' => '11',
-    'menu' => '7',
-    'attachments' => '12',
+    'revision_information' => '16',
+    'author' => '17',
+    'options' => '18',
+    'comment_settings' => '19',
+    'menu' => '15',
   );
 
   $export['content_extra_weights_ps_userstory'] = $strongarm;
