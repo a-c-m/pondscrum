@@ -735,6 +735,14 @@ function pondscrum_views_default_views() {
     'weight' => '0',
     'name' => 'primary-links',
   ));
+  $translatables['ps_stories_structure'] = array(
+    t('<a href="/node/add/ps-userstory">Add another user story</a>'),
+    t('Defaults'),
+    t('Please note that nodes have to be resaved if the computed field should be updated. This can be done by nudging the node and hitting table\'s the save button. Sorry about the inconvenience.'),
+    t('Priority (Page)'),
+    t('Structure (Page)'),
+    t('User story structure'),
+  );
 
   $views[$view->name] = $view;
 
@@ -999,6 +1007,12 @@ function pondscrum_views_default_views() {
   $handler->override_option('inherit_pager', FALSE);
   $handler->override_option('render_pager', TRUE);
   $handler->override_option('displays', array());
+  $translatables['ps_sum_storypoints'] = array(
+    t('Completed (Attachment)'),
+    t('Current estimation (Attachment)'),
+    t('Defaults'),
+    t('Initial estimation (Attachment)'),
+  );
 
   $views[$view->name] = $view;
 

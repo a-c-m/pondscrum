@@ -16,7 +16,7 @@ function pondscrum_ctools_plugin_api() {
 function pondscrum_node_info() {
   $items = array(
     'ps_userstory' => array(
-      'name' => t('User story'),
+      'name' => t('PS - User story'),
       'module' => 'features',
       'description' => t('User stories are units of development that brings new features to a product.'),
       'has_title' => '1',

@@ -183,7 +183,7 @@ foreach($view->result as $row) {
 }
 
 // Set the value of the sum field
-$node_field[0][\'value\'] = $sum + $node->field_ps_userstory_points[0][\'value\'];',
+$node_field[0][\'value\'] = $sum;',
     'display_format' => '$display = $node_field_item[\'value\'];',
     'store' => 1,
     'data_type' => 'int',
@@ -194,9 +194,9 @@ $node_field[0][\'value\'] = $sum + $node->field_ps_userstory_points[0][\'value\'
     'widget' => array(
       'default_value' => NULL,
       'default_value_php' => NULL,
-      'label' => 'Current estimate, this story plus children ',
+      'label' => 'Child stories points - Current estimate',
       'weight' => '6',
-      'description' => 'This field is set by PHP fetched from the database, and should be replaced with a proper module.',
+      'description' => 'This field is set by adding up all the points from this stories child stories.',
       'type' => 'computed',
       'module' => 'computed_field',
     ),
@@ -273,7 +273,7 @@ foreach($view->result as $row) {
 }
 
 // Set the value of the sum field
-$node_field[0][\'value\'] = $sum + $node->field_ps_userstory_points_initia[0][\'value\'];',
+$node_field[0][\'value\'] = $sum;',
     'display_format' => '$display = $node_field_item[\'value\'];',
     'store' => 1,
     'data_type' => 'int',
@@ -284,9 +284,9 @@ $node_field[0][\'value\'] = $sum + $node->field_ps_userstory_points_initia[0][\'
     'widget' => array(
       'default_value' => NULL,
       'default_value_php' => NULL,
-      'label' => 'Initial estimate, this story plus children',
+      'label' => 'Child stories points - Initial estimate',
       'weight' => '5',
-      'description' => 'This field is set by PHP fetched from the database, and should be replaced with a proper module.',
+      'description' => 'This field is set by adding up all the points from this stories child stories.',
       'type' => 'computed',
       'module' => 'computed_field',
     ),
@@ -515,7 +515,7 @@ $node_field[0][\'value\'] = $sum + $node->field_ps_userstory_points_initia[0][\'
         ),
       ),
       'default_value_php' => NULL,
-      'label' => 'Story points (current estimate)',
+      'label' => 'Story points - Current estimate',
       'weight' => '3',
       'description' => 'The story points are relative size estimates of user stories. The story points should be changed only when adding comments to the user story.',
       'type' => 'number',
@@ -593,11 +593,6 @@ foreach($view->result as $row) {
   $sum = $sum + $row->{$view_field_name};
 }
 
-// Add the user points from active node if it is complete or done
-if (in_array($node->field_ps_userstory_status[0][\'value\'], $complete_value)) {
-  $sum = $sum + $node->field_ps_userstory_points[0][\'value\'];
-}
-
 // Set the value of the sum field
 $node_field[0][\'value\'] = $sum;',
     'display_format' => '$display = $node_field_item[\'value\'];',
@@ -610,9 +605,9 @@ $node_field[0][\'value\'] = $sum;',
     'widget' => array(
       'default_value' => NULL,
       'default_value_php' => NULL,
-      'label' => 'Story points completed (including children)',
+      'label' => 'Child stories points - Completed points',
       'weight' => '7',
-      'description' => 'This field is set by PHP fetched from the database, and should be replaced with a proper module.',
+      'description' => 'This field is set by adding up all the points from this stories child stories.',
       'type' => 'computed',
       'module' => 'computed_field',
     ),
@@ -665,7 +660,7 @@ $node_field[0][\'value\'] = $sum;',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => 'Story points (initial estimate)',
+      'label' => 'Story points - Initial estimate',
       'weight' => '4',
       'description' => 'The story points are relative size estimates of user stories. The initial story point estimate should not be changed.',
       'type' => 'number',
@@ -720,9 +715,9 @@ $node_field[0][\'value\'] = $sum;',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => '…we would like to',
+      'label' => 'we would like to',
       'weight' => '-3',
-      'description' => 'This field should contain a brief and clear of what the feature should do. Some examples are <em>sort t-shirts into categories</em>, <em>easily change the main meny</em> and <em>get a list of all users who have not logged in for three weeks</em>.',
+      'description' => 'This field should contain a brief and clear description of what the feature should do. Some examples are <em>sort t-shirts into categories</em>, <em>easily change the main menu</em> and <em>get a list of all users who have not logged in for three weeks</em>. They should start with a lowercased word.',
       'type' => 'text_textarea',
       'module' => 'text',
     ),
@@ -763,7 +758,7 @@ $node_field[0][\'value\'] = $sum;',
     'active' => '1',
     'prefix' => '',
     'suffix' => '',
-    'min' => '',
+    'min' => '0',
     'max' => '',
     'allowed_values' => '',
     'allowed_values_php' => '',
@@ -777,7 +772,8 @@ $node_field[0][\'value\'] = $sum;',
       'default_value_php' => NULL,
       'label' => 'Priority',
       'weight' => '14',
-      'description' => 'The priority is usually changed using the drag-and-trop table – the is little need to change it here. <em>Note that lower priority number means greater importance.</em>',
+      'description' => 'The priority is usually changed using the drag-and-trop table – the is little need to change it here.
+<em>Note that lower priority number means greater importance.</em> So, item with priority 0 will come before an item with priority 100.',
       'type' => 'number',
       'module' => 'number',
     ),
@@ -830,9 +826,9 @@ $node_field[0][\'value\'] = $sum;',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => '…because',
+      'label' => 'because',
       'weight' => '-2',
-      'description' => 'This field should describe the purpose of adding this feature, to help keeping the development in the right direction.',
+      'description' => 'This field should describe the purpose of adding this feature, to help keeping the development in the right direction and allowing developers to understand the business case for this feature. The reason should start with a lowercase word.',
       'type' => 'text_textarea',
       'module' => 'text',
     ),
@@ -1011,61 +1007,6 @@ halted|Halted',
     ),
   );
 
-  // Exported field: field_ps_userstory_structure_ord
-  $fields['ps_userstory-field_ps_userstory_structure_ord'] = array(
-    'field_name' => 'field_ps_userstory_structure_ord',
-    'type_name' => 'ps_userstory',
-    'display_settings' => array(
-      'weight' => '13',
-      'parent' => '',
-      'label' => array(
-        'format' => 'above',
-      ),
-      'teaser' => array(
-        'format' => 'default',
-        'exclude' => 1,
-      ),
-      'full' => array(
-        'format' => 'default',
-        'exclude' => 1,
-      ),
-      '4' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      'token' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-    ),
-    'widget_active' => '1',
-    'type' => 'number_integer',
-    'required' => '0',
-    'multiple' => '0',
-    'module' => 'number',
-    'active' => '1',
-    'prefix' => '',
-    'suffix' => '',
-    'min' => '',
-    'max' => '',
-    'allowed_values' => '',
-    'allowed_values_php' => '',
-    'widget' => array(
-      'default_value' => array(
-        '0' => array(
-          'value' => '',
-          '_error_element' => 'default_value_widget][field_ps_userstory_structure_ord][0][value',
-        ),
-      ),
-      'default_value_php' => NULL,
-      'label' => 'Structure order',
-      'weight' => '13',
-      'description' => 'This field is used to order user stories in the stucture list. There is no need to change this field manually.',
-      'type' => 'number',
-      'module' => 'number',
-    ),
-  );
-
   // Exported field: field_ps_userstory_subject
   $fields['ps_userstory-field_ps_userstory_subject'] = array(
     'field_name' => 'field_ps_userstory_subject',
@@ -1185,22 +1126,21 @@ halted|Halted',
   t('Acceptance requirements');
   t('As');
   t('Categories');
-  t('Current estimate, this story plus children ');
+  t('Child stories points - Completed points');
+  t('Child stories points - Current estimate');
+  t('Child stories points - Initial estimate');
   t('Dependency');
-  t('Initial estimate, this story plus children');
   t('Owner');
   t('Parent user story');
   t('Priority');
   t('Related user stories');
   t('Requester');
   t('Status');
-  t('Story points (current estimate)');
-  t('Story points (initial estimate)');
-  t('Story points completed (including children)');
-  t('Structure order');
+  t('Story points - Current estimate');
+  t('Story points - Initial estimate');
   t('Watchers');
-  t('…because');
-  t('…we would like to');
+  t('because');
+  t('we would like to');
 
   return $fields;
 }
