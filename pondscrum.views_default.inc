@@ -6,6 +6,544 @@
 function pondscrum_views_default_views() {
   $views = array();
 
+  // Exported view: ps_backlog
+  $view = new view;
+  $view->name = 'ps_backlog';
+  $view->description = 'Pond SCRUM : A listing of user stories';
+  $view->tag = 'ps';
+  $view->view_php = '';
+  $view->base_table = 'node';
+  $view->is_cacheable = FALSE;
+  $view->api_version = 2;
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+  $handler = $view->new_display('default', 'Defaults', 'default');
+  $handler->override_option('fields', array(
+    'nodefield' => array(
+      'label' => '',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'build_mode' => 'teaser',
+      'links' => 0,
+      'comments' => 0,
+      'exclude' => 0,
+      'id' => 'nodefield',
+      'table' => 'node',
+      'field' => 'nodefield',
+      'relationship' => 'none',
+    ),
+    'field_ps_userstory_priority_value' => array(
+      'label' => 'Priority',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'link_to_node' => 0,
+      'label_type' => 'widget',
+      'format' => 'default',
+      'multiple' => array(
+        'group' => TRUE,
+        'multiple_number' => '',
+        'multiple_from' => '',
+        'multiple_reversed' => FALSE,
+      ),
+      'exclude' => 0,
+      'id' => 'field_ps_userstory_priority_value',
+      'table' => 'node_data_field_ps_userstory_priority',
+      'field' => 'field_ps_userstory_priority_value',
+      'override' => array(
+        'button' => 'Override',
+      ),
+      'relationship' => 'none',
+    ),
+  ));
+  $handler->override_option('sorts', array(
+    'field_ps_userstory_priority_value' => array(
+      'order' => 'ASC',
+      'delta' => -1,
+      'id' => 'field_ps_userstory_priority_value',
+      'table' => 'node_data_field_ps_userstory_priority',
+      'field' => 'field_ps_userstory_priority_value',
+      'relationship' => 'none',
+    ),
+  ));
+  $handler->override_option('filters', array(
+    'type' => array(
+      'operator' => 'in',
+      'value' => array(
+        'ps_userstory' => 'ps_userstory',
+      ),
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'id' => 'type',
+      'table' => 'node',
+      'field' => 'type',
+      'relationship' => 'none',
+    ),
+    'status' => array(
+      'operator' => '=',
+      'value' => '1',
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'id' => 'status',
+      'table' => 'node',
+      'field' => 'status',
+      'relationship' => 'none',
+    ),
+  ));
+  $handler->override_option('access', array(
+    'type' => 'none',
+  ));
+  $handler->override_option('cache', array(
+    'type' => 'none',
+  ));
+  $handler->override_option('title', 'Product Backlog - Priority');
+  $handler->override_option('items_per_page', 25);
+  $handler->override_option('style_plugin', 'draggabletable');
+  $handler->override_option('style_options', array(
+    'override' => 1,
+    'sticky' => 0,
+    'order' => 'asc',
+    'columns' => array(
+      'nodefield' => 'nodefield',
+      'field_ps_userstory_priority_value' => 'field_ps_userstory_priority_value',
+    ),
+    'info' => array(
+      'nodefield' => array(
+        'separator' => '',
+      ),
+      'field_ps_userstory_priority_value' => array(
+        'sortable' => 0,
+        'separator' => '',
+      ),
+    ),
+    'default' => '-1',
+    'tabledrag_hierarchy' => array(
+      'field' => 'none',
+      'handler' => 'native',
+    ),
+    'tabledrag_order' => array(
+      'field' => 'field_ps_userstory_priority_value',
+      'handler' => 'cck',
+    ),
+    'draggableviews_extensions' => array(
+      'extension_top' => '3',
+      'extension_bottom' => '3',
+    ),
+    'tabledrag_order_visible' => array(
+      'visible' => 0,
+    ),
+    'tabledrag_hierarchy_visible' => array(
+      'visible' => 0,
+    ),
+    'draggableviews_depth_limit' => '-1',
+    'draggableviews_repair' => array(
+      'repair' => 'repair',
+    ),
+    'tabledrag_types_add' => 'Add type',
+    'tabledrag_expand' => array(
+      'expand_links' => 'expand_links',
+      'collapsed' => 0,
+      'by_uid' => 0,
+    ),
+    'tabledrag_lock' => array(
+      'lock' => 0,
+    ),
+    'draggableviews_default_on_top' => '1',
+    'draggableviews_button_text' => 'Save order',
+    'draggableviews_arguments' => array(
+      'use_args' => 0,
+    ),
+  ));
+  $handler = $view->new_display('page', 'Priority', 'page_1');
+  $handler->override_option('relationships', array(
+    'vid' => array(
+      'label' => 'Parent user story reverse reference',
+      'required' => 0,
+      'delta' => -1,
+      'id' => 'vid',
+      'table' => 'node_data_field_ps_userstory_parent',
+      'field' => 'vid',
+      'override' => array(
+        'button' => 'Use default',
+      ),
+      'relationship' => 'none',
+    ),
+  ));
+  $handler->override_option('filters', array(
+    'type' => array(
+      'operator' => 'in',
+      'value' => array(
+        'ps_userstory' => 'ps_userstory',
+      ),
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'id' => 'type',
+      'table' => 'node',
+      'field' => 'type',
+      'relationship' => 'none',
+    ),
+    'status' => array(
+      'operator' => '=',
+      'value' => '1',
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'id' => 'status',
+      'table' => 'node',
+      'field' => 'status',
+      'relationship' => 'none',
+    ),
+    'nid' => array(
+      'operator' => 'empty',
+      'value' => array(
+        'value' => '',
+        'min' => '',
+        'max' => '',
+      ),
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'id' => 'nid',
+      'table' => 'node',
+      'field' => 'nid',
+      'override' => array(
+        'button' => 'Use default',
+      ),
+      'relationship' => 'vid',
+    ),
+  ));
+  $handler->override_option('style_options', array(
+    'override' => 1,
+    'sticky' => 0,
+    'order' => 'asc',
+    'columns' => array(
+      'nodefield' => 'nodefield',
+      'field_ps_userstory_priority_value' => 'field_ps_userstory_priority_value',
+    ),
+    'info' => array(
+      'nodefield' => array(
+        'separator' => '',
+      ),
+      'field_ps_userstory_priority_value' => array(
+        'sortable' => 0,
+        'separator' => '',
+      ),
+    ),
+    'default' => '-1',
+    'tabledrag_hierarchy' => array(
+      'field' => 'none',
+      'handler' => 'native',
+    ),
+    'tabledrag_order' => array(
+      'field' => 'field_ps_userstory_priority_value',
+      'handler' => 'cck',
+    ),
+    'draggableviews_extensions' => array(
+      'extension_top' => '3',
+      'extension_bottom' => '3',
+    ),
+    'tabledrag_order_visible' => array(
+      'visible' => 0,
+    ),
+    'tabledrag_hierarchy_visible' => array(
+      'visible' => 0,
+    ),
+    'draggableviews_depth_limit' => '-1',
+    'draggableviews_repair' => array(
+      'repair' => 'repair',
+    ),
+    'tabledrag_types_add' => 'Add type',
+    'tabledrag_expand' => array(
+      'expand_links' => 'expand_links',
+      'collapsed' => 0,
+      'by_uid' => 0,
+    ),
+    'tabledrag_lock' => array(
+      'lock' => 0,
+    ),
+    'draggableviews_default_on_top' => '0',
+    'draggableviews_button_text' => 'Save order',
+    'draggableviews_arguments' => array(
+      'use_args' => 0,
+    ),
+  ));
+  $handler->override_option('path', 'ps/backlog/priority');
+  $handler->override_option('menu', array(
+    'type' => 'default tab',
+    'title' => 'Priority',
+    'description' => 'Ordering user stories by importance',
+    'weight' => '0',
+    'name' => 'features',
+  ));
+  $handler->override_option('tab_options', array(
+    'type' => 'normal',
+    'title' => 'Scrum',
+    'description' => 'A list of user stories',
+    'weight' => '0',
+    'name' => 'features',
+  ));
+  $handler = $view->new_display('page', 'Structure', 'page_2');
+  $handler->override_option('fields', array(
+    'nodefield' => array(
+      'label' => '',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'build_mode' => 'teaser',
+      'links' => 0,
+      'comments' => 0,
+      'exclude' => 0,
+      'id' => 'nodefield',
+      'table' => 'node',
+      'field' => 'nodefield',
+      'relationship' => 'none',
+      'override' => array(
+        'button' => 'Use default',
+      ),
+    ),
+    'field_ps_userstory_parent_nid' => array(
+      'label' => '',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'link_to_node' => 0,
+      'label_type' => 'none',
+      'format' => 'default',
+      'multiple' => array(
+        'group' => TRUE,
+        'multiple_number' => '',
+        'multiple_from' => '',
+        'multiple_reversed' => FALSE,
+      ),
+      'exclude' => 0,
+      'id' => 'field_ps_userstory_parent_nid',
+      'table' => 'node_data_field_ps_userstory_parent',
+      'field' => 'field_ps_userstory_parent_nid',
+      'override' => array(
+        'button' => 'Use default',
+      ),
+      'relationship' => 'none',
+    ),
+    'value0' => array(
+      'label' => '',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'exclude' => 0,
+      'id' => 'value0',
+      'table' => 'draggableviews_structure_node0',
+      'field' => 'value0',
+      'override' => array(
+        'button' => 'Use default',
+      ),
+      'relationship' => 'none',
+    ),
+  ));
+  $handler->override_option('sorts', array(
+    'value0' => array(
+      'order' => 'ASC',
+      'id' => 'value0',
+      'table' => 'draggableviews_structure_node0',
+      'field' => 'value0',
+      'override' => array(
+        'button' => 'Use default',
+      ),
+      'relationship' => 'none',
+    ),
+  ));
+  $handler->override_option('title', 'Product Backlog - Structure');
+  $handler->override_option('style_options', array(
+    'override' => 1,
+    'sticky' => 0,
+    'order' => 'asc',
+    'columns' => array(
+      'nodefield' => 'nodefield',
+      'field_ps_userstory_parent_nid' => 'field_ps_userstory_parent_nid',
+      'value0' => 'value0',
+    ),
+    'info' => array(
+      'nodefield' => array(
+        'separator' => '',
+      ),
+      'field_ps_userstory_parent_nid' => array(
+        'separator' => '',
+      ),
+      'value0' => array(
+        'sortable' => 0,
+        'separator' => '',
+      ),
+    ),
+    'default' => '-1',
+    'tabledrag_hierarchy' => array(
+      'field' => 'field_ps_userstory_parent_nid',
+      'handler' => 'cck',
+    ),
+    'tabledrag_order' => array(
+      'field' => 'value0',
+      'handler' => 'native',
+    ),
+    'draggableviews_extensions' => array(
+      'extension_top' => '3',
+      'extension_bottom' => '3',
+    ),
+    'tabledrag_order_visible' => array(
+      'visible' => 0,
+    ),
+    'tabledrag_hierarchy_visible' => array(
+      'visible' => 0,
+    ),
+    'draggableviews_depth_limit' => '-1',
+    'draggableviews_repair' => array(
+      'repair' => 'repair',
+    ),
+    'tabledrag_types_add' => 'Add type',
+    'tabledrag_expand' => array(
+      'expand_links' => 'expand_links',
+      'collapsed' => 0,
+      'by_uid' => 0,
+    ),
+    'tabledrag_lock' => array(
+      'lock' => 0,
+    ),
+    'draggableviews_default_on_top' => '0',
+    'draggableviews_button_text' => 'Save order',
+    'draggableviews_arguments' => array(
+      'use_args' => 0,
+    ),
+  ));
+  $handler->override_option('path', 'ps/backlog/structure');
+  $handler->override_option('menu', array(
+    'type' => 'tab',
+    'title' => 'Structure',
+    'description' => 'Change the user story hierarchy',
+    'weight' => '1',
+    'name' => 'navigation',
+  ));
+  $handler->override_option('tab_options', array(
+    'type' => 'none',
+    'title' => '',
+    'description' => '',
+    'weight' => 0,
+    'name' => 'navigation',
+  ));
+  $translatables['ps_backlog'] = array(
+    t('Defaults'),
+    t('Priority'),
+    t('Product Backlog - Priority'),
+    t('Product Backlog - Structure'),
+    t('Structure'),
+  );
+
+  $views[$view->name] = $view;
+
   // Exported view: ps_stories_structure
   $view = new view;
   $view->name = 'ps_stories_structure';
