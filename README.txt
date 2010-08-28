@@ -23,7 +23,7 @@ Currently the general approach and workflow is detailed in a google doc, https:/
 Most of the roadmap/feature set was agreed verbally at Drupalcon Copenhagen (on the sprint day), the basic rules of which were :
 
   1. Re-use existing modules before writing new code
-  2. Try to make the code work with or without Open Atrium
+  2. Try to make the code work with Open Atrium first, but then support stand alone installs too.
   3. Try to make it simple for new people to learn and use SCRUM with this tool
   
 As we see it there are 4 basic 'views', on top of node creation etc:
