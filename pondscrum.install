@@ -1,0 +1,5 @@
+<?php
+
+function pondscrum_install() {
+  // Empty for now
+}

@@ -1,3 +1,25 @@
 <?php
 
 include_once('pondscrum.features.inc');
+
+function pondscrum_theme($existing) {
+  return array(
+    'views_view__viewname__ps_backlog' => array (
+      'arguments' => array('view' => NULL),
+      'template' => 'views-view--ps-backlog--teaser',
+      'original hook' => 'views_view',
+      'path' => drupal_get_path('module', 'pondscrum'),
+      'preprocess functions' => array(
+        'template_preprocess',
+        'template_preprocess_views_view',
+        'pondscrum_preprocess_views_view__viewname__ps_backlog_teaser',
+      ),
+    ),
+  );
+}
+
+
+function pondscrum_preprocess_views_view__viewname__ps_backlog_teaser($vars) {
+  dsm($vars);
+  return $vars;
+}
