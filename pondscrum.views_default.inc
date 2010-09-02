@@ -534,13 +534,6 @@ function pondscrum_views_default_views() {
     'weight' => 0,
     'name' => 'navigation',
   ));
-  $translatables['ps_backlog'] = array(
-    t('Defaults'),
-    t('Priority'),
-    t('Product Backlog - Priority'),
-    t('Product Backlog - Structure'),
-    t('Structure'),
-  );
 
   $views[$view->name] = $view;
 
@@ -782,6 +775,25 @@ function pondscrum_views_default_views() {
       'id' => 'status',
       'table' => 'node',
       'field' => 'status',
+      'override' => array(
+        'button' => 'Override',
+      ),
+      'relationship' => 'none',
+    ),
+    'type' => array(
+      'operator' => 'in',
+      'value' => array(
+        'ps_userstory' => 'ps_userstory',
+      ),
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'id' => 'type',
+      'table' => 'node',
+      'field' => 'type',
       'override' => array(
         'button' => 'Override',
       ),
@@ -1273,14 +1285,6 @@ function pondscrum_views_default_views() {
     'weight' => '0',
     'name' => 'primary-links',
   ));
-  $translatables['ps_stories_structure'] = array(
-    t('<a href="/node/add/ps-userstory">Add another user story</a>'),
-    t('Defaults'),
-    t('Please note that nodes have to be resaved if the computed field should be updated. This can be done by nudging the node and hitting table\'s the save button. Sorry about the inconvenience.'),
-    t('Priority (Page)'),
-    t('Structure (Page)'),
-    t('User story structure'),
-  );
 
   $views[$view->name] = $view;
 
@@ -1297,7 +1301,7 @@ function pondscrum_views_default_views() {
   $handler = $view->new_display('default', 'Defaults', 'default');
   $handler->override_option('fields', array(
     'field_ps_userstory_childs_initia_value' => array(
-      'label' => '',
+      'label' => 'Child stories points - Initial estimate',
       'alter' => array(
         'alter_text' => 0,
         'text' => '',
@@ -1320,7 +1324,7 @@ function pondscrum_views_default_views() {
       'hide_empty' => 0,
       'empty_zero' => 0,
       'link_to_node' => 0,
-      'label_type' => 'none',
+      'label_type' => 'widget',
       'format' => 'default',
       'multiple' => array(
         'group' => TRUE,
@@ -1332,6 +1336,82 @@ function pondscrum_views_default_views() {
       'id' => 'field_ps_userstory_childs_initia_value',
       'table' => 'node_data_field_ps_userstory_childs_initia',
       'field' => 'field_ps_userstory_childs_initia_value',
+      'relationship' => 'none',
+    ),
+    'field_ps_userstory_childs_value' => array(
+      'label' => 'Child stories points - Current estimate',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'link_to_node' => 0,
+      'label_type' => 'widget',
+      'format' => 'default',
+      'multiple' => array(
+        'group' => TRUE,
+        'multiple_number' => '',
+        'multiple_from' => '',
+        'multiple_reversed' => FALSE,
+      ),
+      'exclude' => 0,
+      'id' => 'field_ps_userstory_childs_value',
+      'table' => 'node_data_field_ps_userstory_childs',
+      'field' => 'field_ps_userstory_childs_value',
+      'relationship' => 'none',
+    ),
+    'field_ps_userstory_points_comple_value' => array(
+      'label' => 'Child stories points - Completed points',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'link_to_node' => 0,
+      'label_type' => 'widget',
+      'format' => 'default',
+      'multiple' => array(
+        'group' => TRUE,
+        'multiple_number' => '',
+        'multiple_from' => '',
+        'multiple_reversed' => FALSE,
+      ),
+      'exclude' => 0,
+      'id' => 'field_ps_userstory_points_comple_value',
+      'table' => 'node_data_field_ps_userstory_points_comple',
+      'field' => 'field_ps_userstory_points_comple_value',
       'relationship' => 'none',
     ),
   ));
@@ -1393,6 +1473,22 @@ function pondscrum_views_default_views() {
       'field' => 'status',
       'relationship' => 'none',
     ),
+    'type' => array(
+      'operator' => 'in',
+      'value' => array(
+        'ps_userstory' => 'ps_userstory',
+      ),
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'id' => 'type',
+      'table' => 'node',
+      'field' => 'type',
+      'relationship' => 'none',
+    ),
   ));
   $handler->override_option('access', array(
     'type' => 'none',
@@ -1401,67 +1497,11 @@ function pondscrum_views_default_views() {
     'type' => 'none',
   ));
   $handler->override_option('items_per_page', 0);
-  $handler = $view->new_display('attachment', 'Initial estimation (Attachment)', 'attachment_1');
-  $handler->override_option('attachment_position', 'before');
-  $handler->override_option('inherit_arguments', TRUE);
-  $handler->override_option('inherit_exposed_filters', FALSE);
-  $handler->override_option('inherit_pager', FALSE);
-  $handler->override_option('render_pager', TRUE);
-  $handler->override_option('displays', array());
-  $handler = $view->new_display('attachment', 'Current estimation (Attachment)', 'attachment_2');
-  $handler->override_option('fields', array(
-    'field_ps_userstory_childs_value' => array(
-      'label' => '',
-      'alter' => array(
-        'alter_text' => 0,
-        'text' => '',
-        'make_link' => 0,
-        'path' => '',
-        'link_class' => '',
-        'alt' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'target' => '',
-        'help' => '',
-        'trim' => 0,
-        'max_length' => '',
-        'word_boundary' => 1,
-        'ellipsis' => 1,
-        'html' => 0,
-        'strip_tags' => 0,
-      ),
-      'empty' => '',
-      'hide_empty' => 0,
-      'empty_zero' => 0,
-      'link_to_node' => 0,
-      'label_type' => 'none',
-      'format' => 'default',
-      'multiple' => array(
-        'group' => TRUE,
-        'multiple_number' => '',
-        'multiple_from' => '',
-        'multiple_reversed' => FALSE,
-      ),
-      'exclude' => 0,
-      'id' => 'field_ps_userstory_childs_value',
-      'table' => 'node_data_field_ps_userstory_childs',
-      'field' => 'field_ps_userstory_childs_value',
-      'override' => array(
-        'button' => 'Use default',
-      ),
-      'relationship' => 'none',
-    ),
-  ));
-  $handler->override_option('attachment_position', 'before');
-  $handler->override_option('inherit_arguments', TRUE);
-  $handler->override_option('inherit_exposed_filters', FALSE);
-  $handler->override_option('inherit_pager', FALSE);
-  $handler->override_option('render_pager', TRUE);
-  $handler->override_option('displays', array());
+  $handler->override_option('style_plugin', 'table');
   $handler = $view->new_display('attachment', 'Completed (Attachment)', 'attachment_3');
   $handler->override_option('fields', array(
-    'field_ps_userstory_childs_value' => array(
-      'label' => '',
+    'field_ps_userstory_points_comple_value' => array(
+      'label' => 'Child stories points - Completed points',
       'alter' => array(
         'alter_text' => 0,
         'text' => '',
@@ -1484,7 +1524,7 @@ function pondscrum_views_default_views() {
       'hide_empty' => 0,
       'empty_zero' => 0,
       'link_to_node' => 0,
-      'label_type' => 'none',
+      'label_type' => 'widget',
       'format' => 'default',
       'multiple' => array(
         'group' => TRUE,
@@ -1493,9 +1533,9 @@ function pondscrum_views_default_views() {
         'multiple_reversed' => FALSE,
       ),
       'exclude' => 0,
-      'id' => 'field_ps_userstory_childs_value',
-      'table' => 'node_data_field_ps_userstory_childs',
-      'field' => 'field_ps_userstory_childs_value',
+      'id' => 'field_ps_userstory_points_comple_value',
+      'table' => 'node_data_field_ps_userstory_points_comple',
+      'field' => 'field_ps_userstory_points_comple_value',
       'override' => array(
         'button' => 'Use default',
       ),
@@ -1545,12 +1585,6 @@ function pondscrum_views_default_views() {
   $handler->override_option('inherit_pager', FALSE);
   $handler->override_option('render_pager', TRUE);
   $handler->override_option('displays', array());
-  $translatables['ps_sum_storypoints'] = array(
-    t('Completed (Attachment)'),
-    t('Current estimation (Attachment)'),
-    t('Defaults'),
-    t('Initial estimation (Attachment)'),
-  );
 
   $views[$view->name] = $view;
 

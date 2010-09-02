@@ -1,0 +1,51 @@
+<?php
+
+/**
+ * Sum all appearances of a selected field in a view.
+ *
+ * This function is still in experimental stage, and is only intended
+ * to be used to sum CCK fields. It allows you to use Views to do queries
+ * and get the sum of a selected column (one field).
+ *
+ * @param $vid
+ *   The machine name of the view. Required.
+ * @param $display
+ *   The machine name of the display, eg. attachment_3. Look at the url for
+ *   the display on Views configuration page if you are uncertain. Defaults
+ *   to 'default'.
+ * @param $args
+ *   An array of arguments to send into the view. Defaults to no arguments.
+ * @param $field
+ *   The machine name of the field you wish to sum. Required.
+ * @return
+ *   The sum of all occurances of the field in the view.
+ */
+
+function ccksum_compute($vid, $display = 'default', $args = array(), $field) {
+
+  // Load the view and set appropriate values
+  $view = views_get_view($vid);
+  $view->set_display($display);
+  $view->set_arguments($args);
+  $view->set_items_per_page(0);
+  $view->execute();
+
+  // Break already if the view has no result
+  if (is_null($view->result)) {
+    return 0;
+  }
+
+
+  // Temporarily save the field alias, to make lines below readable
+  $field_alias = $view->field[$field . '_value']->field_alias;
+
+
+  // Sum all the rows
+  $sum = 0;
+  foreach($view->result as $row) {
+    $sum += $row->{$field_alias};
+  }
+
+  // Return the sum
+  return $sum;
+}

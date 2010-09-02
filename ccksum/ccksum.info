@@ -1,0 +1,6 @@
+; $Id$
+name = CCK Sum
+description = Gives a function to sum fields using Views. No UI yet, sorry.
+core = 6.x
+dependencies[] = views
+package = CCK

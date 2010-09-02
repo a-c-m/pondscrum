@@ -1,5 +1,6 @@
 core = "6.x"
 dependencies[] = "auto_nodetitle"
+dependencies[] = "ccksum"
 dependencies[] = "computed_field"
 dependencies[] = "content_taxonomy_autocomplete"
 dependencies[] = "context"

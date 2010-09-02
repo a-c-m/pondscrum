@@ -565,83 +565,9 @@ Done',
     'multiple' => '0',
     'module' => 'computed_field',
     'active' => '1',
-    'code' => '// Set required data for the sum field
-
-
-
-$view_name = \'ps_sum_storypoints\';
-
-$field_name = \'field_ps_userstory_childs\';
-
-$view_arguments = array(
-
-  $node->nid,
-
-);
-
-
-
-$display_name = \'attachment_2\';
-
-
-
-
-
-
-
-// Load the view
-
-$view = views_get_view($view_name);
-
-$view->set_display($display_name);
-
-$view->set_arguments($view_arguments);
-
-$view->set_items_per_page(0);
-
-$view->execute();
-
-
-
-// Uncomment the following line to see the structure of the view content.
-
-// Might be useful if the structure of the $view object changes.
-
-// var_dump($view->result);
-
-
-
-// $view_field_name = \'node_data_field_decimal_\' . $field_name . \'_value\';
-
-// node_data_field_ps_userstory_parent_field_ps_userstory_points_value
-
-// $view_field_name = \'node_data_field_ps_userstory_parent_field_ps_userstory_points_value\';
-
-// $view_field_name = \'node_data_field_ps_userstory_parent_field_ps_userstory_points_initia_value\'
-
-$view_field_name = \'node_data_field_ps_userstory_parent_field_ps_userstory_childs_value\';
-
-
-
-// Sum all the rows
-
-$sum = 0;
-
-if (isset($view->result)) {
-
-  foreach($view->result as $row) {
-
-    $sum = $sum + $row->{$view_field_name};
-
-  }
-
-}
-
-
-
-// Set the value of the sum field
-
-$node_field[0][\'value\'] = $sum;',
+    'code' => '// Return the sum of children\'s story points, plus this user story\'s
+$node_field[0][\'value\'] = $node->field_ps_userstory_points[0][\'value\']
+  + ccksum_compute(\'ps_sum_storypoints\', \'\', $node->nid, \'field_ps_userstory_childs\');',
     'display_format' => '$display = $node_field_item[\'value\'];',
     'store' => 1,
     'data_type' => 'int',
@@ -693,87 +619,9 @@ $node_field[0][\'value\'] = $sum;',
     'multiple' => '0',
     'module' => 'computed_field',
     'active' => '1',
-    'code' => '// Set required data for the sum field
-
-
-
-$view_name = \'ps_sum_storypoints\';
-
-$field_name = \'field_ps_userstory_childs_initia\';
-
-$view_arguments = array(
-
-  $node->nid,
-
-);
-
-
-
-// Displays are not used for now.
-
-// $display_name = \'default\';
-
-
-
-
-
-
-
-// Load the view
-
-$view = views_get_view($view_name);
-
-// Displays are not used for now.
-
-//$view->set_display($display_name);
-
-$view->set_arguments($view_arguments);
-
-$view->set_items_per_page(0);
-
-$view->execute();
-
-
-
-// Uncomment the following line to see the structure of the view content.
-
-// Might be useful if the structure of the $view object changes.
-
-// var_dump($view->result);
-
-
-
-// $view_field_name = \'node_data_field_decimal_\' . $field_name . \'_value\';
-
-// node_data_field_ps_userstory_parent_field_ps_userstory_points_value
-
-// $view_field_name = \'node_data_field_ps_userstory_parent_field_ps_userstory_points_value\';
-
-// $view_field_name = \'node_data_field_ps_userstory_parent_field_ps_userstory_points_initia_value\'
-
-$view_field_name = \'node_data_field_ps_userstory_parent_field_ps_userstory_childs_initia_value\';
-
-
-
-// Sum all the rows
-
-$sum = 0;
-
-if (isset($view->result)) {
-
-  foreach($view->result as $row) {
-
-    $sum = $sum + $row->{$view_field_name};
-
-  }
-
-}
-
-
-
-// Set the value of the sum field
-
-$node_field[0][\'value\'] = $sum;',
+    'code' => '// Return the sum of children\'s story points, plus this user story\'s
+$node_field[0][\'value\'] = $node->field_ps_userstory_points_initia[0][\'value\']
+  + ccksum_compute(\'ps_sum_storypoints\', \'\', $node->nid, \'field_ps_userstory_childs_initia\');',
     'display_format' => '$display = $node_field_item[\'value\'];',
     'store' => 1,
     'data_type' => 'int',
@@ -1056,87 +904,16 @@ $node_field[0][\'value\'] = $sum;',
     'multiple' => '0',
     'module' => 'computed_field',
     'active' => '1',
-    'code' => '// Set required data for the sum field
+    'code' => '// Get all the complete story points for child stories
+$complete = ccksum_compute(\'ps_sum_storypoints\', \'attachment_3\', $node->nid, \'field_ps_userstory_points_comple\');
 
-
-
-$view_name = \'ps_sum_storypoints\';
-
-$field_name = \'field_ps_userstory_childs\';
-
-$view_arguments = array(
-
-  $node->nid,
-
-);
-
-
-
-$display_name = \'attachment_3\';
-
-
-
-$complete_value = array(\'complete\', \'done\');
-
-
-
-
-
-
-
-// Load the view
-
-$view = views_get_view($view_name);
-
-$view->set_display($display_name);
-
-$view->set_arguments($view_arguments);
-
-$view->set_items_per_page(0);
-
-$view->execute();
-
-
-
-// Uncomment the following line to see the structure of the view content.
-
-// Might be useful if the structure of the $view object changes.
-
-// var_dump($view->result);
-
-
-
-// $view_field_name = \'node_data_field_decimal_\' . $field_name . \'_value\';
-
-// node_data_field_ps_userstory_parent_field_ps_userstory_points_value
-
-// $view_field_name = \'node_data_field_ps_userstory_parent_field_ps_userstory_points_value\';
-
-// $view_field_name = \'node_data_field_ps_userstory_parent_field_ps_userstory_points_initia_value\'
-
-$view_field_name = \'node_data_field_ps_userstory_parent_field_ps_userstory_childs_value\';
-
-
-
-// Sum all the rows
-
-$sum = 0;
-
-if (isset($view->result)) {
-
-  foreach($view->result as $row) {
-
-    $sum = $sum + $row->{$view_field_name};
-
-  }
-
+// Add the story points of this user story, if it is complete
+$ok = array(\'complete\', \'done\');
+if (in_array($node->field_ps_userstory_status[0][\'value\'], $ok)) {
+  $complete += $node_field[0][\'value\'] = $node->field_ps_userstory_points[0][\'value\'];
 }
 
-
-
-// Set the value of the sum field
-
-$node_field[0][\'value\'] = $sum;',
+$node_field[0][\'value\'] = $complete;',
     'display_format' => '$display = $node_field_item[\'value\'];',
     'store' => 1,
     'data_type' => 'int',
