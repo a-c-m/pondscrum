@@ -567,40 +567,80 @@ Done',
     'active' => '1',
     'code' => '// Set required data for the sum field
 
+
+
 $view_name = \'ps_sum_storypoints\';
+
 $field_name = \'field_ps_userstory_childs\';
+
 $view_arguments = array(
+
   $node->nid,
+
 );
+
+
 
 $display_name = \'attachment_2\';
 
 
 
+
+
+
+
 // Load the view
+
 $view = views_get_view($view_name);
+
 $view->set_display($display_name);
+
 $view->set_arguments($view_arguments);
+
 $view->set_items_per_page(0);
+
 $view->execute();
 
+
+
 // Uncomment the following line to see the structure of the view content.
+
 // Might be useful if the structure of the $view object changes.
+
 // var_dump($view->result);
 
+
+
 // $view_field_name = \'node_data_field_decimal_\' . $field_name . \'_value\';
+
 // node_data_field_ps_userstory_parent_field_ps_userstory_points_value
+
 // $view_field_name = \'node_data_field_ps_userstory_parent_field_ps_userstory_points_value\';
+
 // $view_field_name = \'node_data_field_ps_userstory_parent_field_ps_userstory_points_initia_value\'
+
 $view_field_name = \'node_data_field_ps_userstory_parent_field_ps_userstory_childs_value\';
 
+
+
 // Sum all the rows
+
 $sum = 0;
-foreach($view->result as $row) {
-  $sum = $sum + $row->{$view_field_name};
+
+if (isset($view->result)) {
+
+  foreach($view->result as $row) {
+
+    $sum = $sum + $row->{$view_field_name};
+
+  }
+
 }
 
+
+
 // Set the value of the sum field
+
 $node_field[0][\'value\'] = $sum;',
     'display_format' => '$display = $node_field_item[\'value\'];',
     'store' => 1,
@@ -655,42 +695,84 @@ $node_field[0][\'value\'] = $sum;',
     'active' => '1',
     'code' => '// Set required data for the sum field
 
+
+
 $view_name = \'ps_sum_storypoints\';
+
 $field_name = \'field_ps_userstory_childs_initia\';
+
 $view_arguments = array(
+
   $node->nid,
+
 );
 
+
+
 // Displays are not used for now.
+
 // $display_name = \'default\';
 
 
 
+
+
+
+
 // Load the view
+
 $view = views_get_view($view_name);
+
 // Displays are not used for now.
+
 //$view->set_display($display_name);
+
 $view->set_arguments($view_arguments);
+
 $view->set_items_per_page(0);
+
 $view->execute();
 
+
+
 // Uncomment the following line to see the structure of the view content.
+
 // Might be useful if the structure of the $view object changes.
+
 // var_dump($view->result);
 
+
+
 // $view_field_name = \'node_data_field_decimal_\' . $field_name . \'_value\';
+
 // node_data_field_ps_userstory_parent_field_ps_userstory_points_value
+
 // $view_field_name = \'node_data_field_ps_userstory_parent_field_ps_userstory_points_value\';
+
 // $view_field_name = \'node_data_field_ps_userstory_parent_field_ps_userstory_points_initia_value\'
+
 $view_field_name = \'node_data_field_ps_userstory_parent_field_ps_userstory_childs_initia_value\';
 
+
+
 // Sum all the rows
+
 $sum = 0;
-foreach($view->result as $row) {
-  $sum = $sum + $row->{$view_field_name};
+
+if (isset($view->result)) {
+
+  foreach($view->result as $row) {
+
+    $sum = $sum + $row->{$view_field_name};
+
+  }
+
 }
 
+
+
 // Set the value of the sum field
+
 $node_field[0][\'value\'] = $sum;',
     'display_format' => '$display = $node_field_item[\'value\'];',
     'store' => 1,
@@ -976,42 +1058,84 @@ $node_field[0][\'value\'] = $sum;',
     'active' => '1',
     'code' => '// Set required data for the sum field
 
+
+
 $view_name = \'ps_sum_storypoints\';
+
 $field_name = \'field_ps_userstory_childs\';
+
 $view_arguments = array(
+
   $node->nid,
+
 );
 
+
+
 $display_name = \'attachment_3\';
+
+
 
 $complete_value = array(\'complete\', \'done\');
 
 
 
+
+
+
+
 // Load the view
+
 $view = views_get_view($view_name);
+
 $view->set_display($display_name);
+
 $view->set_arguments($view_arguments);
+
 $view->set_items_per_page(0);
+
 $view->execute();
 
+
+
 // Uncomment the following line to see the structure of the view content.
+
 // Might be useful if the structure of the $view object changes.
+
 // var_dump($view->result);
 
+
+
 // $view_field_name = \'node_data_field_decimal_\' . $field_name . \'_value\';
+
 // node_data_field_ps_userstory_parent_field_ps_userstory_points_value
+
 // $view_field_name = \'node_data_field_ps_userstory_parent_field_ps_userstory_points_value\';
+
 // $view_field_name = \'node_data_field_ps_userstory_parent_field_ps_userstory_points_initia_value\'
+
 $view_field_name = \'node_data_field_ps_userstory_parent_field_ps_userstory_childs_value\';
 
+
+
 // Sum all the rows
+
 $sum = 0;
-foreach($view->result as $row) {
-  $sum = $sum + $row->{$view_field_name};
+
+if (isset($view->result)) {
+
+  foreach($view->result as $row) {
+
+    $sum = $sum + $row->{$view_field_name};
+
+  }
+
 }
 
+
+
 // Set the value of the sum field
+
 $node_field[0][\'value\'] = $sum;',
     'display_format' => '$display = $node_field_item[\'value\'];',
     'store' => 1,
@@ -1183,7 +1307,7 @@ $node_field[0][\'value\'] = $sum;',
     'widget' => array(
       'default_value' => array(
         '0' => array(
-          'value' => '',
+          'value' => '50',
           '_error_element' => 'default_value_widget][field_ps_userstory_priority][0][value',
         ),
       ),
@@ -1191,6 +1315,7 @@ $node_field[0][\'value\'] = $sum;',
       'label' => 'Priority',
       'weight' => '14',
       'description' => 'The priority is usually changed using the drag-and-trop table – the is little need to change it here.
+
 <em>Note that lower priority number means greater importance.</em> So, item with priority 0 will come before an item with priority 100.',
       'type' => 'number',
       'module' => 'number',
